@@ -1,0 +1,33 @@
+name: Run Kaggle Notebook Every 7 Minutes
+
+on:
+  schedule:
+    # This is a cron expression that runs at every 5th minute
+    - cron: '*/7 * * * *'
+  workflow_dispatch: # Allows you to manually trigger the workflow from the Actions tab
+
+jobs:
+  run-kaggle:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Kaggle API
+        run: pip install kaggle
+
+      - name: Configure Kaggle API
+        run: |
+          mkdir -p ~/.kaggle
+          echo '{"username":"${{ secrets.KAGGLE_USERNAME }}","key":"${{ secrets.KAGGLE_KEY }}"}' > ~/.kaggle/kaggle.json
+          chmod 600 ~/.kaggle/kaggle.json
+
+      - name: Push and run Kaggle Notebook
+        # Replace 'path/to/your/notebook/folder' with the actual path in your repo
+        # If your files are in the root, just use '.'
+        run: kaggle kernels push -p .
