@@ -1,6 +1,6 @@
 {
   "id": "zachht/wnba-daily-odds-scraper",
-  "title": "My 5-Minute Scheduled Script",
+  "title": "wnba-daily-odds-scraper",
   "code_file": "wnba-daily-odds-scraper.ipynb",
   "language": "python",
   "kernel_type": "notebook",
