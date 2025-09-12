@@ -3,7 +3,7 @@ name: Run Kaggle Notebook Every 7 Minutes
 on:
   schedule:
     # This is a cron expression that runs at every 5th minute
-    - cron: '*/7 * * * *'
+    - cron: '*/15 * * * *'
   workflow_dispatch: # Allows you to manually trigger the workflow from the Actions tab
 
 jobs:
